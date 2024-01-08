@@ -1,4 +1,5 @@
 import requests
+import yaml
 from time import sleep
 import random
 from multiprocessing import Process
@@ -11,14 +12,15 @@ from sqlalchemy import text
 random.seed(100)
 
 #Adding the invoke_url for different topics
-invoke_url_pin = "https://4gzrfhhikb.execute-api.us-east-1.amazonaws.com/pinterest/topics/0af64aa61d45.pin"
-invoke_url_geo = "https://4gzrfhhikb.execute-api.us-east-1.amazonaws.com/pinterest/topics/0af64aa61d45.geo"
-invoke_url_user = "https://4gzrfhhikb.execute-api.us-east-1.amazonaws.com/pinterest/topics/0af64aa61d45.user"
+invoke_url_pin = "https://4gzrfhhikb.execute-api.us-east-1.amazonaws.com/test/topics/0af64aa61d45.pin"
+invoke_url_geo = "https://4gzrfhhikb.execute-api.us-east-1.amazonaws.com/test/topics/0af64aa61d45.geo"
+invoke_url_user = "https://4gzrfhhikb.execute-api.us-east-1.amazonaws.com/test/topics/0af64aa61d45.user"
 
 class AWSDBConnector:
 
     def __init__(self):
 
+       
         
     def create_db_connector(self):
         engine = sqlalchemy.create_engine(f"mysql+pymysql://{self.USER}:{self.PASSWORD}@{self.HOST}:{self.PORT}/{self.DATABASE}?charset=utf8mb4")
@@ -66,7 +68,9 @@ def run_infinite_post_data_loop():
             response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=geo_result)
             response_user = requests.request("POST", invoke_url_user, headers=headers, data=user_result)
             
+            print(response_pin.status_code)
             print(response_geo.status_code)
+            print(response_user.status_code)
 
 
 if __name__ == "__main__":
