@@ -20,7 +20,14 @@ class AWSDBConnector:
 
     def __init__(self):
 
-       
+        with open("db_creds_pin.yaml", 'r') as file:
+            dict = yaml.safe_load(file)
+
+        self.HOST = dict['HOST']
+        self.USER = dict['USER']
+        self.PASSWORD = dict['PASSWORD']
+        self.DATABASE = dict['DATABASE']
+        self.PORT = dict['PORT']
         
     def create_db_connector(self):
         engine = sqlalchemy.create_engine(f"mysql+pymysql://{self.USER}:{self.PASSWORD}@{self.HOST}:{self.PORT}/{self.DATABASE}?charset=utf8mb4")
@@ -56,21 +63,21 @@ def run_infinite_post_data_loop():
             for row in user_selected_row:
                 user_result = dict(row._mapping)
             
-            # print(type(pin_result))
-            # print(type(geo_result))
-            # print(type(user_result))
+            print(pin_result)
+            print(geo_result)
+            print(user_result)
             
             #creating a header type for response
             headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
             
-            #Creating individual request for the reponse
-            response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=pin_result)
-            response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=geo_result)
-            response_user = requests.request("POST", invoke_url_user, headers=headers, data=user_result)
+            # #Creating individual request for the reponse
+            # response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=pin_result)
+            # response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=geo_result)
+            # response_user = requests.request("POST", invoke_url_user, headers=headers, data=user_result)
             
-            print(response_pin.status_code)
-            print(response_geo.status_code)
-            print(response_user.status_code)
+            # print(response_pin.status_code)
+            # # print(response_geo.status_code)
+            # # print(response_user.status_code)
 
 
 if __name__ == "__main__":
