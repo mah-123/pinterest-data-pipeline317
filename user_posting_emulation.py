@@ -63,21 +63,52 @@ def run_infinite_post_data_loop():
             for row in user_selected_row:
                 user_result = dict(row._mapping)
             
-            print(pin_result)
-            print(geo_result)
-            print(user_result)
+            # print(pin_result)
+            # print(geo_result)
+            # print(user_result)
+
+            # Payload for each pin, geo and user information from pinterest
+            payload_pin = json.dumps({
+                        "records": [
+                            {
+                            #Data should be send as pairs of column_name:value, with different columns separated by commas       
+                            "value": {"index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], "description": pin_result["description"],
+                                       "poster_name": pin_result["poster_name"], "follower_count": pin_result["follower_count"], "User Info Error": pin_result["User Info Error"], 
+                                       "is_image_or_video": pin_result["is_image_or_video"], "image_src": pin_result["image_src"], "downloaded": pin_result["downloaded"], 
+                                       "save_location": pin_result["save_location"], "category": pin_result["category"]}
+                            }
+                        ]
+                    })
             
+            payload_geo = json.dumps({
+                        "records": [
+                            {
+                            #Data should be send as pairs of column_name:value, with different columns separated by commas       
+                            "value": {"ind": geo_result["ind"], "timestamp": geo_result["timestamp"], "latitude": geo_result["age"], "longitude": geo_result["longitude"], 
+                                      "country": geo_result["country"]}
+                            }
+                        ]
+                    })
+            
+            payload_user = json.dumps({
+                        "records": [
+                            {
+                            #Data should be send as pairs of column_name:value, with different columns separated by commas       
+                            "value": {"ind": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "date_joined": user_result["date_joined"]}
+                            }
+                        ]
+                    })
             #creating a header type for response
             headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
             
-            # #Creating individual request for the reponse
-            # response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=pin_result)
-            # response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=geo_result)
-            # response_user = requests.request("POST", invoke_url_user, headers=headers, data=user_result)
+            #Creating individual request for the reponse
+            response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=payload_pin)
+            response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=payload_geo)
+            response_user = requests.request("POST", invoke_url_user, headers=headers, data=payload_user)
             
-            # print(response_pin.status_code)
-            # # print(response_geo.status_code)
-            # # print(response_user.status_code)
+            print(response_pin.status_code)
+            print(response_geo.status_code)
+            print(response_user.status_code)
 
 
 if __name__ == "__main__":
