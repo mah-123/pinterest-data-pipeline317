@@ -87,7 +87,7 @@ def run_infinite_post_data_loop():
                                       "country": geo_result["country"]}
                             }
                         ]
-                    })
+                    }, default=str)
             
             payload_user = json.dumps({
                         "records": [
@@ -96,7 +96,7 @@ def run_infinite_post_data_loop():
                             "value": {"ind": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "date_joined": user_result["date_joined"]}
                             }
                         ]
-                    })
+                    }, default=str)
             #creating a header type for response
             headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
             
