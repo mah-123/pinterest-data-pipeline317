@@ -93,7 +93,7 @@ def run_infinite_post_data_loop():
                         "records": [
                             {
                             #Data should be send as pairs of column_name:value, with different columns separated by commas       
-                            "value": {"ind": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "date_joined": user_result["date_joined"]}
+                            "value": {"ind": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "age": user_result["age"], "date_joined": user_result["date_joined"]}
                             }
                         ]
                     }, default=str)
