@@ -44,7 +44,14 @@ In this section, when you have created the API gateway to store the three topics
 * Make sure the file path to each topics matches to s3 url path e.g."mnt/aws_mount/user_info_file-path/*json." for the file_path variable.
 * This should be configured on three topics.
 
-## 2.2 Databrick 
+## 2.2 Databrick query
+From the previous dataframe created on the notebook, you can use it to query the data for specifc output for user, pin and geo information
+which can be seen on the notebook. Before using the data frame, you would need to clean the df_pin, df_user and df_pin for any erroneous value, adjust the order and correcting data type such as age to integer and timestamp for post_date and date_joined column. Some of the query examples using pyspark include:
+* popular category for each country
+* follower counts for each country
+* age groups based on certain category
+
+## 2.3
  
 ## Installation
 At the moment there is no full structured programme that can be utilised.
