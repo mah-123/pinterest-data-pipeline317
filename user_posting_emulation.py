@@ -73,7 +73,7 @@ def run_infinite_post_data_loop():
                             {
                             #Data should be send as pairs of column_name:value, with different columns separated by commas       
                             "value": {"index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], "description": pin_result["description"],
-                                       "poster_name": pin_result["poster_name"], "follower_count": pin_result["follower_count"], "is_image_or_video": pin_result["is_image_or_video"], 
+                                       "poster_name": pin_result["poster_name"], "follower_count": pin_result["follower_count"], "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], 
                                        "image_src": pin_result["image_src"], "downloaded": pin_result["downloaded"], "save_location": pin_result["save_location"], "category": pin_result["category"]}
                             }
                         ]
