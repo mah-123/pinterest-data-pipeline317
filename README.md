@@ -49,10 +49,24 @@ From the previous dataframe created on the notebook, you can use it to query the
 which can be seen on the notebook. Before using the data frame, you would need to clean the df_pin, df_user and df_pin for any erroneous value, adjust the order and correcting data type such as age to integer and timestamp for post_date and date_joined column. Some of the query examples using pyspark include:
 * popular category for each country
 * follower counts for each country
-* age groups based on certain category
+* age groups based on certain category.
 
-## 2.3
- 
+## 2.3 Creating autonomous work with Mwaa AWS
+After creating query work on your persosnalise databrick notebook, you would need to create a DAG file which will be needed to uploaded on
+s3 Bucket (mwaa-dags-bucket under the DAGS folder) for the MWAA work enviroment to work. The following file 0af64aa61d45_dag.py would require following information:
+* Notebook_path on the specific notebook used for querying
+* Creating a user name to associate with DAG
+* Start_date in correct date format
+* Number of retries for the schedule cleaning (in int)
+* Schedule_intervals you want it be done e.g. @daily or @weekly
+* And existing_cluse_id associated with the databricks project (found in the compute section info).
+Once uploaded to the s3 Bucket and the DAG file is associated with the user_id for the python file, you can go to
+Airflow account under the Databrick-airflow-env (accessed from MWAA aws account) and you will see the specific DAGs assocaited.
+Under the DAG info with the associated user_id, you can now activate it manually for it to automatically clean the notebook daily.
+Note: make sure you unmount or comment the mounted aws since it will cause an error with trying to clean the notebook frequently.
+
+## 3 AWS kinesis
+
 ## Installation
 At the moment there is no full structured programme that can be utilised.
 
