@@ -66,10 +66,22 @@ Under the DAG info with the associated user_id, you can now activate it manually
 Note: make sure you unmount or comment the mounted aws since it will cause an error with trying to clean the notebook frequently.
 
 ## 3 AWS kinesis
+For this section you need to create three streams on Kinesis aws console for user, pin and geo which will be used to make a stream directly from the new API proxy integration (from the previous rest api we had made for batch processing). With the right API integration for the three topic streams, we will create a new python scripts (previous user_emulation.py) with few adjustment to be sent to the aws kinesis streams. When you run the python scripts, on the aws kinesis associated with the three streams, you can see or view dataviewer on the console to see how data are directly streamed. The data streams cannot maintain the information for a day, so it will require to rerun the programme to gain individual .json file.
+
+These files associated with the three streams created on aws kinesis can be directly attached on notebook by creating a readstream:
+* The file streams can be created into three dataframe for user, geo and pin
+* Similar to batch processing, you will need clean the dataframe by cast type and removing any error
+* From the cleaned dataframe you will need to writestream it to a specific table associated with user_id for user, geo and pin.
+Once you have created the table, you can view it on the catalogue section as catalog > hive_metastore > default > user_id.topic.
 
 ## Installation
-At the moment there is no full structured programme that can be utilised.
+At the moment most of the work would not be accessible due to some of work requires an aws and databricks account to access notebook and run the work. Only work can be accessed are the python scripts.
+
+# To download the work:
+Under the code section you will need to copy the url code https://github.com/mah-123/pinterest-data-pipeline317.git and use git clone command
+to extract the file (as seen on the image below).
+Make sure you download it on a suitable file and use the right IDE environment to run the code.
+![Alt text](image.png)
 
 ## License
-
-##
+There is no license required for the project, it is just for demonstrations purposes.
