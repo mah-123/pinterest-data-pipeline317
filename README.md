@@ -1,7 +1,7 @@
 # pinterest-data-pipeline
 
 ## Introduction
-This project compromises of using user information to implement a pinterest data pipeline by using Kafka and aws3
+This project compromises of using user information to implement a pinterest data pipeline by using Kafka and aws
 services.
 
 ## 1.1 Creating an EC2 instance environment
