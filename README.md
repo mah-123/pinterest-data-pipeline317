@@ -1,4 +1,5 @@
 # pinterest-data-pipeline
+![Alt text](1709065988724-36676c1c-b5fd-4629-9df6-5ceeda3b0db2_1.jpg)
 
 ## Introduction
 This project compromises of using user information to implement a pinterest data pipeline by using Kafka and aws3
